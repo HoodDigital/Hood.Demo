@@ -1,0 +1,42 @@
+# Hood CMS Demo
+[![GitHub release (Latest by date including pre-releases)](https://img.shields.io/github/v/release/HoodDigital/Hood?include_prereleases&label=Latest%20Release)](https://github.com/HoodDigital/Hood/releases)
+
+Demo implementation of Hood CMS using the Hood Nuget dotnet package and the HoodCMS NPM package for client code SCSS and TypeScript.
+
+Hood CMS is a fully customisable content management system built in ASP.NET Core 5 & Bootstrap 5. Full open source project can be found at https://github.com/HoodDigital/Hood
+
+## Nuget Installation 
+[![NuGet](https://img.shields.io/nuget/v/hood?label=NuGet%20Stable)](https://www.nuget.org/packages/Hood/)
+[![MyGet Latest](https://img.shields.io/myget/hood/vpre/hood?label=MyGet)](https://www.myget.org/feed/hood/package/nuget/Hood)
+
+Install Hood CMS via Package Manager.
+```
+> Install-Package Hood
+```
+or via .NET CLI
+```
+> dotnet add package Hood
+```
+
+## Client Side Code
+[![npm Package](https://img.shields.io/npm/v/hoodcms)](https://www.npmjs.com/package/hoodcms)
+
+The client side code is not required to run Hood CMS as all required JS/CSS are served via jsdelivr. However, if you want to extend or modify the client side code, you can download this npm package, which contains the required distribution CSS and JavaScript, as well as source SCSS and TypeScript files. 
+
+https://www.npmjs.com/package/hoodcms
+
+To install Hood CMS client side code via NPM.
+```
+> npm install hoodcms
+```
+or
+```
+> yarn add hoodcms
+```
+
+> To use your own client side code, you will also need to update script/link references in your theme's HTML or Razor C# files to use your own version of the code, rather than the CDN.
+
+## Full documentation
+Documentation is a work in progress!
+
+Also, feel free to add your issues or pull requests to our GitHub, we always welcome contributions!
