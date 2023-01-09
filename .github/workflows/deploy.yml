@@ -1,6 +1,6 @@
 name: .NET Build & Deploy
 
-runs-on:
+on:
   push:
     branches:
       - "main"
