@@ -9,7 +9,7 @@ export class Site extends HoodApi {
 
     initialise() {
         super.initialise();
-        Alerts.success('Hood CMS is loaded! Customise your TS code in /src/ts/site.ts!');
+        //Alerts.success('Hood CMS is loaded! Customise your TS code in /src/ts/site.ts!');
     }
 }
 

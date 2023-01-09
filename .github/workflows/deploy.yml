@@ -1,0 +1,54 @@
+name: .NET Build & Deploy
+
+runs-on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Set Production Environment Variables
+        run: |
+          $productionSettings = '${{ secrets.PRODUCTION_SETTINGS }}'
+          $productionSettings | Out-File "appsettings.Production.json"
+        shell: pwsh
+
+      - name: Restore Dependencies
+        run: |
+          dotnet restore
+
+      - name: Restore Client Dependencies
+        run: |
+          yarn install
+
+      - name: Package Client Code
+        run: |
+          yarn package
+
+      - name: .NET Build
+        run: |
+          dotnet build --no-restore --configuration Release
+
+      - name: .NET Publish
+        run: |
+          dotnet publish -c Release -o '${{ env.DOTNET_ROOT }}/published/'
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "${{ env.DOTNET_ROOT }}/published/"
+          server-dir: "cms.hooddigital.com/"
+          dangerous-clean-slate: ${{ github.event.inputs.clean }}
